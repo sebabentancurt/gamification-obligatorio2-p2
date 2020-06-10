@@ -5,6 +5,8 @@
  */
 package gamification;
 
+import gamification.views.Dashboard;
+
 /**
  *
  * @author sebab
@@ -15,7 +17,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {
+            new Dashboard().setVisible(true);
+        } catch (Exception e) {
+        }
     }
     
 }
