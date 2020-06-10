@@ -9,7 +9,7 @@ package gamification;
  *
  * @author sebab
  */
-public class Gamification {
+public class Main {
 
     /**
      * @param args the command line arguments
