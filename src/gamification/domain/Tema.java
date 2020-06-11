@@ -1,4 +1,4 @@
-package Dominio;
+package gamification.domain;
 
 import java.util.HashMap;
 
@@ -29,6 +29,10 @@ public class Tema {
         this.setNombre(unNombre);
         this.setDescripcion(unaDescripcion);
         preguntas = new HashMap<String, String>();
+    }
+    
+    public Boolean addQuestionAnswer(String question, String answer){
+        preguntas.put(question, answer);
     }
 
     //setters
