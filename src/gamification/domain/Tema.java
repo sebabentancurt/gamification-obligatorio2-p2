@@ -31,7 +31,7 @@ public class Tema {
         preguntas = new HashMap<String, String>();
     }
     
-    public Boolean addQuestionAnswer(String question, String answer){
+    public void addQuestionAnswer(String question, String answer){
         preguntas.put(question, answer);
     }
 
