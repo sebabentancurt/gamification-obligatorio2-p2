@@ -6,6 +6,7 @@
 package gamification.views;
 
 import gamification.domain.Sistema;
+import gamification.domain.Tema;
 
 /**
  *
@@ -24,11 +25,11 @@ public class VentanaTemas extends javax.swing.JFrame {
     public VentanaTemas(Sistema unSistema){
         modelo = unSistema;
         initComponents();
-        objetoAPantalla();
+        cargarLista();
     }
     
-    private void objetoAPantalla(){
-    
+    private void cargarLista(){
+        lstTemas.setListData((String[]) modelo.getListaTemas().toArray());
     }
 
     /**
@@ -80,6 +81,11 @@ public class VentanaTemas extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        lstTemas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstTemasValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstTemas);
 
         getContentPane().add(jScrollPane1);
@@ -90,6 +96,11 @@ public class VentanaTemas extends javax.swing.JFrame {
         jLabel3.setBounds(290, 20, 70, 16);
 
         btnAgregarModificar.setText("Agregar/Modificar");
+        btnAgregarModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarModificarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAgregarModificar);
         btnAgregarModificar.setBounds(50, 220, 140, 40);
 
@@ -103,6 +114,17 @@ public class VentanaTemas extends javax.swing.JFrame {
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescripcionActionPerformed
+
+    private void btnAgregarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarModificarActionPerformed
+        // TODO add your handling code here:
+        Tema tema = new Tema(txtNombre.getText(), txtDescripcion.getText());
+        modelo.agregarTema(tema);
+        cargarLista();
+    }//GEN-LAST:event_btnAgregarModificarActionPerformed
+
+    private void lstTemasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTemasValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstTemasValueChanged
 
     /**
      * @param args the command line arguments

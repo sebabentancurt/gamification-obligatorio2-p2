@@ -5,7 +5,9 @@
  */
 package gamification;
 
+import gamification.domain.Sistema;
 import gamification.views.Dashboard;
+import gamification.views.VentanaTemas;
 
 /**
  *
@@ -18,8 +20,10 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            new Dashboard().setVisible(true);
+            Sistema s = new Sistema();
+            VentanaTemas v = new VentanaTemas();            
         } catch (Exception e) {
+            System.out.println("error--");
         }
     }
     
