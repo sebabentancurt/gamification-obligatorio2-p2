@@ -11,11 +11,11 @@ import gamification.domain.Tema;
  *
  * @author sebab
  */
-public class ThemeController {
+public class TemaController {
     
    public static boolean createAnswerQuestion(Tema theme,String question,String answer) {
         try {
-            return theme.addQuestionAnswer(question,answer);
+            return theme.agregarPregunta(question,answer);
         } catch (Exception e) {
             return false;
         }

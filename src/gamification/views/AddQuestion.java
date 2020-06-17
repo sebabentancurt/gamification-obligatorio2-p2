@@ -5,7 +5,7 @@
  */
 package gamification.views;
 
-import gamification.controllers.ThemeController;
+import gamification.controllers.TemaController;
 import gamification.domain.Tema;
 import javax.swing.JOptionPane;
 
@@ -139,7 +139,7 @@ public class AddQuestion extends javax.swing.JPanel {
         // TODO add your handling code here:
         String question = tf_question.getSelectedText();
         String answer = tf_answer.getSelectedText();
-        boolean createQuestion = ThemeController.createAnswerQuestion(theme,question, answer);
+        boolean createQuestion = TemaController.createAnswerQuestion(theme,question, answer);
         if (createQuestion) {
             this.setVisible(false);
         } else {

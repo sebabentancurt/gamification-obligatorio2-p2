@@ -1,6 +1,8 @@
 package gamification.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,16 +25,31 @@ public class Tema {
         this.setDescripcion("sin descripcion");
         preguntas = new HashMap<String, String>();
     }
-    
+
     //constructor con parametros
     public Tema(String unNombre, String unaDescripcion) {
         this.setNombre(unNombre);
         this.setDescripcion(unaDescripcion);
         preguntas = new HashMap<String, String>();
     }
-    
-    public void addQuestionAnswer(String question, String answer){
+
+    public boolean agregarPregunta(String question, String answer) {
         preguntas.put(question, answer);
+        return true;
+    }
+
+    public boolean eliminarPregunta(String pregunta) {
+        preguntas.remove(pregunta);
+        return true;
+    }
+
+    public ArrayList<String> listarPreguntas() {
+        ArrayList<String> listaAux = new ArrayList<>();
+        Iterator<String> it = preguntas.keySet().iterator();
+        while (it.hasNext()) {
+            listaAux.add(it.next());
+        }
+        return listaAux;
     }
 
     //setters
