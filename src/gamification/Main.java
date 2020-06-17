@@ -6,6 +6,7 @@
 package gamification;
 
 import gamification.domain.Sistema;
+import gamification.domain.Tema;
 import gamification.views.Dashboard;
 import gamification.views.VentanaTemas;
 
@@ -19,14 +20,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
+        
             Sistema s = new Sistema();
-            VentanaTemas v = new VentanaTemas();        
-            Dashboard dashboard = new Dashboard();
-            dashboard.setVisible(true);
-        } catch (Exception e) {
-            System.out.println("error--");
-        }
+            Tema tema = new Tema();
+            s.agregarTema(tema);
+            VentanaTemas v = new VentanaTemas(s);
+            v.setVisible(true);
+            //Dashboard dashboard = new Dashboard();
+            //dashboard.setVisible(true);
+       
     }
     
 }

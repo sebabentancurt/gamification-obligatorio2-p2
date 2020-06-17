@@ -81,5 +81,9 @@ public class Tema {
     public String getDescripcion() {
         return descripcion;
     }
+    
+    public String toString(){
+        return this.getNombre() + ": " + this.preguntas.size();
+    }
 
 }

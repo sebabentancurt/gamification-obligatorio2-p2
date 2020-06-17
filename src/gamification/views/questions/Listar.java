@@ -17,6 +17,7 @@ public class Listar extends javax.swing.JFrame {
 
     /**
      * Creates new form Listar
+     *
      * @param tema
      */
     public Listar(Tema tema) {
@@ -183,12 +184,12 @@ public class Listar extends javax.swing.JFrame {
         // TODO add your handling code here:
         String pregunta = txtPregunta.getText();
         String respuesta = txtRespuesta.getText();
-        
+
         tema.agregarPregunta(pregunta, respuesta);
         cargarLista();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void cargarLista(){
+    private void cargarLista() {
         lstPreguntas.setModel(tema.modelListarPreguntas());
     }
     private void txtPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPreguntaActionPerformed
@@ -201,12 +202,14 @@ public class Listar extends javax.swing.JFrame {
 
     private void lstPreguntasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPreguntasValueChanged
         // TODO add your handling code here:
+        /*
         int selection = lstPreguntasValueChanged.getSelectedIndex();
         if (selection!=-1) {
             Persona p = list_model.getPersona(selection);
             lblPregunta.setText(p.getApellidos());
             lblRespuesta.setText(Integer.toString(p.getEdad()));
-        }
+                }
+         */
     }//GEN-LAST:event_lstPreguntasValueChanged
 
     /**

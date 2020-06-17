@@ -13,6 +13,7 @@ import gamification.domain.Tema;
  * @author Mateo
  */
 public class VentanaTemas extends javax.swing.JFrame {
+
     private Sistema modelo;
 
     /**
@@ -21,15 +22,15 @@ public class VentanaTemas extends javax.swing.JFrame {
     public VentanaTemas() {
         initComponents();
     }
-    
-    public VentanaTemas(Sistema unSistema){
+
+    public VentanaTemas(Sistema unSistema) {
         modelo = unSistema;
         initComponents();
         cargarLista();
     }
-    
-    private void cargarLista(){
-        lstTemas.setListData((String[]) modelo.getListaTemas().toArray());
+
+    private void cargarLista() {
+        lstTemas.setListData(modelo.getListaTemas().toArray());
     }
 
     /**
@@ -46,7 +47,7 @@ public class VentanaTemas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstTemas = new javax.swing.JList<>();
+        lstTemas = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         btnAgregarModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -54,12 +55,9 @@ public class VentanaTemas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestionar Temas");
         getContentPane().setLayout(null);
-
-        txtNombre.setText("jTextField1");
         getContentPane().add(txtNombre);
         txtNombre.setBounds(20, 30, 240, 24);
 
-        txtDescripcion.setText("jTextField2");
         txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescripcionActionPerformed(evt);
@@ -76,10 +74,10 @@ public class VentanaTemas extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(20, 70, 80, 16);
 
-        lstTemas.setModel(new javax.swing.AbstractListModel<String>() {
+        lstTemas.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         lstTemas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -105,6 +103,11 @@ public class VentanaTemas extends javax.swing.JFrame {
         btnAgregarModificar.setBounds(50, 220, 140, 40);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEliminar);
         btnEliminar.setBounds(230, 220, 140, 40);
 
@@ -124,7 +127,24 @@ public class VentanaTemas extends javax.swing.JFrame {
 
     private void lstTemasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTemasValueChanged
         // TODO add your handling code here:
+        try {
+            Tema tema = (Tema) lstTemas.getSelectedValue();
+            txtNombre.setText(tema.getNombre());
+            txtDescripcion.setText(tema.getDescripcion());
+        } catch (Exception NullPointerException) {
+            
+        }
     }//GEN-LAST:event_lstTemasValueChanged
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        Tema tema = (Tema) lstTemas.getSelectedValue();
+        modelo.eliminarTema(tema);
+        cargarLista();
+        
+        txtNombre.setText("");
+        txtDescripcion.setText("");
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,7 +188,7 @@ public class VentanaTemas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> lstTemas;
+    private javax.swing.JList lstTemas;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

@@ -27,5 +27,9 @@ public class Sistema {
     public void agregarTema(Tema unTema){
         this.getListaTemas().add(unTema);
     }
+    
+    public void eliminarTema(Tema unTema){
+        this.getListaTemas().remove(unTema);
+    }
 
 }
