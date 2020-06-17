@@ -3,6 +3,7 @@ package gamification.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import javax.swing.DefaultListModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -51,6 +52,17 @@ public class Tema {
         }
         return listaAux;
     }
+    
+    public DefaultListModel modelListarPreguntas(){
+        DefaultListModel model = new DefaultListModel<>();
+        ArrayList<String> listaAux = new ArrayList<>();
+        Iterator<String> it = preguntas.keySet().iterator();
+        
+        while (it.hasNext()) {
+             model.addElement(it.next());
+        }
+        return model;
+     }
 
     //setters
     public void setNombre(String unNombre) {

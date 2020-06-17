@@ -21,7 +21,9 @@ public class Main {
     public static void main(String[] args) {
         try {
             Sistema s = new Sistema();
-            VentanaTemas v = new VentanaTemas();            
+            VentanaTemas v = new VentanaTemas();        
+            Dashboard dashboard = new Dashboard();
+            dashboard.setVisible(true);
         } catch (Exception e) {
             System.out.println("error--");
         }
