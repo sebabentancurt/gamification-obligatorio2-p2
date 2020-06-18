@@ -51,12 +51,13 @@ public class VentanaTemas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnAgregarModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnEliminar1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestionar Temas");
         getContentPane().setLayout(null);
         getContentPane().add(txtNombre);
-        txtNombre.setBounds(20, 30, 240, 24);
+        txtNombre.setBounds(20, 30, 240, 36);
 
         txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,11 +69,11 @@ public class VentanaTemas extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre;");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 10, 50, 16);
+        jLabel1.setBounds(20, 10, 50, 19);
 
         jLabel2.setText("Descripcion:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 70, 80, 16);
+        jLabel2.setBounds(20, 70, 80, 19);
 
         lstTemas.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -87,11 +88,11 @@ public class VentanaTemas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(lstTemas);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(290, 40, 90, 140);
+        jScrollPane1.setBounds(290, 40, 160, 140);
 
         jLabel3.setText("Lista:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(290, 20, 70, 16);
+        jLabel3.setBounds(290, 20, 70, 19);
 
         btnAgregarModificar.setText("Agregar/Modificar");
         btnAgregarModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,18 +101,28 @@ public class VentanaTemas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAgregarModificar);
-        btnAgregarModificar.setBounds(50, 220, 140, 40);
+        btnAgregarModificar.setBounds(20, 220, 140, 40);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.setToolTipText("");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
         getContentPane().add(btnEliminar);
-        btnEliminar.setBounds(230, 220, 140, 40);
+        btnEliminar.setBounds(170, 220, 140, 40);
 
-        setBounds(0, 0, 414, 337);
+        btnEliminar1.setText("Preguntas");
+        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEliminar1);
+        btnEliminar1.setBounds(320, 220, 130, 40);
+
+        setBounds(0, 0, 477, 307);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
@@ -145,6 +156,15 @@ public class VentanaTemas extends javax.swing.JFrame {
         txtNombre.setText("");
         txtDescripcion.setText("");
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        Tema tema = (Tema) lstTemas.getSelectedValue();
+        VentanaPreguntas view = new VentanaPreguntas(tema);
+        view.setVisible(true);
+        
+    }//GEN-LAST:event_btnEliminar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,6 +204,7 @@ public class VentanaTemas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarModificar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEliminar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

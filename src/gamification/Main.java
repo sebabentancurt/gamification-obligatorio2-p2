@@ -7,7 +7,7 @@ package gamification;
 
 import gamification.domain.Sistema;
 import gamification.domain.Tema;
-import gamification.views.Dashboard;
+import gamification.views.Menu;
 import gamification.views.VentanaTemas;
 
 /**
@@ -26,7 +26,7 @@ public class Main {
         s.agregarTema(tema);
         VentanaTemas v = new VentanaTemas(s);
         v.setVisible(true);
-        Dashboard dashboard = new Dashboard();
+        Menu dashboard = new Menu();
         dashboard.setVisible(true);
 
     }
