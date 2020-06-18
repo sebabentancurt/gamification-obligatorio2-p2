@@ -23,12 +23,25 @@ public class Sistema {
     public ArrayList<Tema> getListaTemas() {
         return listaTemas;
     }
-    
-    public void agregarTema(Tema unTema){
-        this.getListaTemas().add(unTema);
+
+    public void agregarTema(Tema unTema) {
+
+        boolean existe = false;
+
+        for (Tema tema : listaTemas) {
+            if (tema.getNombre().equals(unTema.getNombre())) {
+                tema.setDescripcion(unTema.getDescripcion());
+                existe = true;
+            }
+        }
+
+        if (!existe) {
+            this.getListaTemas().add(unTema);
+        }
+
     }
-    
-    public void eliminarTema(Tema unTema){
+
+    public void eliminarTema(Tema unTema) {
         this.getListaTemas().remove(unTema);
     }
 
