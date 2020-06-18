@@ -20,15 +20,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-            Sistema s = new Sistema();
-            Tema tema = new Tema();
-            s.agregarTema(tema);
-            VentanaTemas v = new VentanaTemas(s);
-            v.setVisible(true);
-            //Dashboard dashboard = new Dashboard();
-            //dashboard.setVisible(true);
-       
+
+        Sistema s = new Sistema();
+        Tema tema = new Tema();
+        s.agregarTema(tema);
+        VentanaTemas v = new VentanaTemas(s);
+        v.setVisible(true);
+        Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
+
     }
-    
+
 }
