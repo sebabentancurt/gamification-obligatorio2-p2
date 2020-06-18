@@ -63,6 +63,10 @@ public class Tema {
         }
         return model;
      }
+    
+    public String getRespuesta(String pregunta){
+        return preguntas.get(pregunta);
+    }
 
     //setters
     public void setNombre(String unNombre) {

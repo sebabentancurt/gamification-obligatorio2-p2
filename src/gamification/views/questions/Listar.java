@@ -36,6 +36,7 @@ public class Listar extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
+        jMenu1 = new javax.swing.JMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPreguntas = new javax.swing.JList<>();
         txtRespuesta = new javax.swing.JTextField();
@@ -47,13 +48,15 @@ public class Listar extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblPregunta = new javax.swing.JLabel();
+        lblRespuesta = new javax.swing.JLabel();
         btnEliminar1 = new javax.swing.JButton();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.setTitle("Gestionar Temas");
         jFrame1.getContentPane().setLayout(null);
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +71,12 @@ public class Listar extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(lstPreguntas);
+
+        txtRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRespuestaActionPerformed(evt);
+            }
+        });
 
         txtPregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,14 +98,19 @@ public class Listar extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Pregunta:");
 
         jLabel5.setText("Respuesta:");
 
-        jLabel6.setText("...");
+        lblPregunta.setText("...");
 
-        jLabel7.setText("...");
+        lblRespuesta.setText("...");
 
         btnEliminar1.setText("Modificar");
         btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,11 +144,11 @@ public class Listar extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6))
+                                .addComponent(lblPregunta))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
+                                .addComponent(lblRespuesta)
                                 .addGap(98, 98, 98)
                                 .addComponent(btnEliminar))
                             .addGroup(layout.createSequentialGroup()
@@ -152,7 +166,6 @@ public class Listar extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -165,11 +178,11 @@ public class Listar extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel6))
+                            .addComponent(lblPregunta))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel7)
+                            .addComponent(lblRespuesta)
                             .addComponent(btnEliminar)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,9 +197,11 @@ public class Listar extends javax.swing.JFrame {
         // TODO add your handling code here:
         String pregunta = txtPregunta.getText();
         String respuesta = txtRespuesta.getText();
+        if (!pregunta.isEmpty()) {
+            tema.agregarPregunta(pregunta, respuesta);
+            cargarLista();
+        }
 
-        tema.agregarPregunta(pregunta, respuesta);
-        cargarLista();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void cargarLista() {
@@ -202,15 +217,28 @@ public class Listar extends javax.swing.JFrame {
 
     private void lstPreguntasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPreguntasValueChanged
         // TODO add your handling code here:
-        /*
-        int selection = lstPreguntasValueChanged.getSelectedIndex();
-        if (selection!=-1) {
-            Persona p = list_model.getPersona(selection);
-            lblPregunta.setText(p.getApellidos());
-            lblRespuesta.setText(Integer.toString(p.getEdad()));
-                }
-         */
+        String pregunta = lstPreguntas.getSelectedValue();
+        if (!pregunta.isBlank()) {
+            lblRespuesta.setText(tema.getRespuesta(pregunta));
+            lblPregunta.setText(pregunta);
+        }
     }//GEN-LAST:event_lstPreguntasValueChanged
+
+    private void txtRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRespuestaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRespuestaActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        String pregunta = lstPreguntas.getSelectedValue();
+        if (!pregunta.isBlank()) {
+            tema.eliminarPregunta(pregunta);
+            cargarLista();
+            lblRespuesta.setText("...");
+            lblPregunta.setText("...");
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,7 +247,7 @@ public class Listar extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -262,9 +290,10 @@ public class Listar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblPregunta;
+    private javax.swing.JLabel lblRespuesta;
     private javax.swing.JList<String> lstPreguntas;
     private javax.swing.JTextField txtPregunta;
     private javax.swing.JTextField txtRespuesta;
