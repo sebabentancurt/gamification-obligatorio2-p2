@@ -30,7 +30,6 @@ public class Sistema {
 
         for (Tema tema : listaTemas) {
             if (tema.getNombre().equals(unTema.getNombre())) {
-                unTema = tema;
                 tema.setDescripcion(unTema.getDescripcion());
                 existe = true;
             }
