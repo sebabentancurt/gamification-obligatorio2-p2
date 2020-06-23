@@ -132,7 +132,7 @@ public class VentanaTemas extends javax.swing.JFrame {
     private void btnAgregarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarModificarActionPerformed
         // TODO add your handling code here:
         Tema tema = new Tema(txtNombre.getText(), txtDescripcion.getText());
-        modelo.agregarTema(tema);
+        Tema agregarTema = modelo.agregarTema(tema);
         cargarLista();
     }//GEN-LAST:event_btnAgregarModificarActionPerformed
 
@@ -143,7 +143,7 @@ public class VentanaTemas extends javax.swing.JFrame {
             txtNombre.setText(tema.getNombre());
             txtDescripcion.setText(tema.getDescripcion());
         } catch (Exception NullPointerException) {
-            
+
         }
     }//GEN-LAST:event_lstTemasValueChanged
 
@@ -152,18 +152,18 @@ public class VentanaTemas extends javax.swing.JFrame {
         Tema tema = (Tema) lstTemas.getSelectedValue();
         modelo.eliminarTema(tema);
         cargarLista();
-        
+
         txtNombre.setText("");
         txtDescripcion.setText("");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
         // TODO add your handling code here:
-                // TODO add your handling code here:
+        // TODO add your handling code here:
         Tema tema = (Tema) lstTemas.getSelectedValue();
         VentanaPreguntas view = new VentanaPreguntas(tema);
         view.setVisible(true);
-        
+
     }//GEN-LAST:event_btnEliminar1ActionPerformed
 
     /**
@@ -173,7 +173,7 @@ public class VentanaTemas extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

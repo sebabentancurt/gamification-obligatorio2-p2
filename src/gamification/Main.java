@@ -23,22 +23,24 @@ public class Main {
 
         Sistema s = new Sistema();
         Tema tema = new Tema();
-        s.agregarTema(tema);
-        ArrayList<String> preguntas  = new ArrayList();
-        ArrayList<String> respuestas  = new ArrayList();
-        
+        Tema agregarTema = s.agregarTema(tema);
+        ArrayList<String> preguntas = new ArrayList();
+        ArrayList<String> respuestas = new ArrayList();
+
         preguntas.add("HOLA");
         respuestas.add("CHAU");
-        
+
         preguntas.add("1");
         respuestas.add("2");
-        
+
         preguntas.add("pregunta");
         respuestas.add("respuesta");
-        
-        VentanaFlashCards v = new VentanaFlashCards(preguntas, respuestas);
-        v.setVisible(true);
 
+        VentanaFlashCards v = new VentanaFlashCards(preguntas, respuestas);
+        //v.setVisible(true);
+
+        Menu ve = new Menu();
+        ve.setVisible(true);
     }
 
 }
