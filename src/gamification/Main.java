@@ -37,10 +37,10 @@ public class Main {
         respuestas.add("respuesta");
 
         VentanaFlashCards v = new VentanaFlashCards(preguntas, respuestas);
-        //v.setVisible(true);
+        v.setVisible(true);
 
-        Menu ve = new Menu();
-        ve.setVisible(true);
+        //Menu ve = new Menu();
+        //ve.setVisible(true);
     }
 
 }

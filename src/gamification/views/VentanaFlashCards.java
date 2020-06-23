@@ -16,7 +16,7 @@ public class VentanaFlashCards extends javax.swing.JFrame {
     ArrayList<String> preguntas;
     ArrayList<String> respuestas;
     private int contador = 0;
-    private boolean mostrarRespuesta = true;
+    private boolean mostrarRespuesta = false;
 
     /**
      * Creates new form VentanaFlashCards
@@ -94,7 +94,7 @@ public class VentanaFlashCards extends javax.swing.JFrame {
         if (contador > 0) {
             contador--;
         }
-        
+        mostrarRespuesta = false;
         mostrarPregunta();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -104,7 +104,7 @@ public class VentanaFlashCards extends javax.swing.JFrame {
             contador++;
         
         }
-        
+        mostrarRespuesta = false;        
         mostrarPregunta();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
