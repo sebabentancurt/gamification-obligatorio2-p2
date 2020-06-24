@@ -1,74 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gamification.helpers;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.Formatter;
 
-/**
- *
- * @author sebab
- */
-public class ArchivoLectura {
+public class ArchivoGrabacion {
 
-    private Scanner in;
-    private String linea;
+    private Formatter out;
 
-    public ArchivoLectura(String unNombre) {
+    public ArchivoGrabacion(String unNombre) {
         try {
-            in = new Scanner(Paths.get(unNombre));
-        } catch (IOException e) {
-            System.err.println("Error ");
-            System.exit(1);
+            FileWriter f = new FileWriter(unNombre, true);
+            out = new Formatter(f);
+        } catch (FileNotFoundException e) {
+            System.out.println("no se puede crear");
+        } catch (SecurityException e) {
+            System.out.println("sin permisos");
+        } catch (IOException ex) {
+            System.out.println("Error");
         }
     }
 
-    public boolean hayMasLineas() {
-        boolean hay = false;
-        linea = null;
-        if (in.hasNext()) {
-            linea = in.nextLine();
-            hay = true;
-        }
-        return hay;
-    }
-
-    public ArrayList<List> listarDeAN(int cant) {
-        ArrayList<List> arrayList = new ArrayList<>();
-        List<String> list = new ArrayList<>();
-        int van = 0;
-
-        while (this.hayMasLineas()) {
-            van++;
-            String linea = this.linea();
-            if (!linea.isBlank()) {
-                list.add(this.linea());
-            }
-
-            if (van == cant) {
-                if (list.size() == cant) {
-                    arrayList.add(list);
-                }
-                list = new ArrayList<>();
-                van = 0;
-            }
-        }
-        this.cerrar();
-        return arrayList;
-    }
-
-    public String linea() {
-// devuelve la última linea leida
-        return linea;
+    public void grabarLinea(String linea) {
+        out.format("%s%n", linea);
     }
 
     public void cerrar() {
-        in.close();
+        out.close();
     }
 }

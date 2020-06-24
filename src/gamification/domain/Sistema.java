@@ -26,6 +26,14 @@ public class Sistema {
 
     public Tema agregarTema(Tema unTema) {
 
+        if (!this.existeTema(unTema)) {
+            this.getListaTemas().add(unTema);
+        }
+
+        return unTema;
+    }
+
+    public boolean existeTema(Tema unTema) {
         boolean existe = false;
 
         for (Tema tema : listaTemas) {
@@ -34,12 +42,7 @@ public class Sistema {
                 existe = true;
             }
         }
-
-        if (!existe) {
-            this.getListaTemas().add(unTema);
-        }
-
-        return unTema;
+        return existe;
     }
 
     public void eliminarTema(Tema unTema) {

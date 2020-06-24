@@ -7,11 +7,15 @@ package gamification.views;
 
 import gamification.TemaControlador;
 import gamification.domain.Sistema;
+import gamification.helpers.ArchivoGrabacion;
 import gamification.helpers.ArchivoLectura;
+import gamification.helpers.Herramientas;
+import java.awt.HeadlessException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,6 +44,7 @@ public class Menu extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -60,6 +65,13 @@ public class Menu extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Importar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -96,6 +108,10 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton2))
                 .addContainerGap(89, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +120,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jButton4)
+                .addContainerGap(350, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,15 +143,49 @@ public class Menu extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int result = fileChooser.showOpenDialog(this);
+        ArchivoGrabacion grab = new ArchivoGrabacion("BITACORA.txt");
         if (result == JFileChooser.APPROVE_OPTION) {
             // user selects a file
-            File selectedFile = fileChooser.getSelectedFile();
-            ArchivoLectura arch = new ArchivoLectura(selectedFile.getAbsolutePath());
-            ArrayList<List> listaPreguntas = arch.listarDeAN(3);
-            TemaControlador.importarTemas(sistema, listaPreguntas);
+            try {
+                File selectedFile = fileChooser.getSelectedFile();
+                ArchivoLectura arch = new ArchivoLectura(selectedFile.getAbsolutePath());
+                ArrayList<List> listaPreguntas = arch.listarDeAN(LINEAS_PREGUNTA);
+                ArrayList<Integer> resultado = TemaControlador.importarTemas(sistema, listaPreguntas, LINEAS_PREGUNTA);
+
+                String bitacora = "Agregadas:" + resultado.get(1) + " Actualizadas:" + resultado.get(2) + " Ignoradas:" + resultado.get(0) + " Fecha:" + Herramientas.getTime();
+                grab.grabarLinea(bitacora);
+                grab.cerrar();
+                String mensaje = "Se importo correctamente las preguntas. \nAgregadas: " + resultado.get(1)
+                        + "\nActualizadas: " + resultado.get(2) + "\nIgnoradas: " + resultado.get(0);
+                JOptionPane.showMessageDialog(rootPane, mensaje, "Importacion", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al importar. Intente nuevamente", "Importacion", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                File selectedFile = fileChooser.getSelectedFile();
+                TemaControlador.exportarTemas(sistema, selectedFile.getAbsolutePath() + "/DATOS.txt");
+                JOptionPane.showMessageDialog(rootPane, "Preguntas exportadas correctamentes", "Exportacion", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (HeadlessException e) {
+                JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al exportar. Intente nuevamente", "Exportacion", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+    private static final int LINEAS_PREGUNTA = 3;
 
     /**
      * @param args the command line arguments
@@ -174,6 +226,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

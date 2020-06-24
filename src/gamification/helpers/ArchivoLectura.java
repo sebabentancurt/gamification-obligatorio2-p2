@@ -52,9 +52,7 @@ public class ArchivoLectura {
             }
 
             if (van == cant) {
-                if (list.size() == cant) {
-                    arrayList.add(list);
-                }
+                arrayList.add(list);
                 list = new ArrayList<>();
                 van = 0;
             }
