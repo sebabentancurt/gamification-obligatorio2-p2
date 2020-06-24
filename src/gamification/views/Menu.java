@@ -19,13 +19,18 @@ import javax.swing.JFileChooser;
  */
 public class Menu extends javax.swing.JFrame {
 
-    private final Sistema sistema;
+    private Sistema modelo;
 
     /**
      * Creates new form Dashboard
      */
     public Menu() {
-        sistema = new Sistema();
+        modelo = new Sistema();
+        initComponents();
+    }
+
+    public Menu(Sistema unSistema) {
+        modelo = unSistema;
         initComponents();
     }
 
@@ -40,6 +45,7 @@ public class Menu extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        btnJugar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -60,6 +66,13 @@ public class Menu extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        btnJugar.setText("Jugar");
+        btnJugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJugarActionPerformed(evt);
             }
         });
 
@@ -93,6 +106,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(481, 481, 481)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3)
                     .addComponent(jButton2))
                 .addContainerGap(89, Short.MAX_VALUE))
@@ -102,9 +116,11 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnJugar)
+                .addContainerGap(339, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,7 +128,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        VentanaTemas view = new VentanaTemas(sistema);
+        VentanaTemas view = new VentanaTemas(modelo);
         view.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -130,10 +146,16 @@ public class Menu extends javax.swing.JFrame {
             File selectedFile = fileChooser.getSelectedFile();
             ArchivoLectura arch = new ArchivoLectura(selectedFile.getAbsolutePath());
             ArrayList<List> listaPreguntas = arch.listarDeAN(3);
-            TemaControlador.importarTemas(sistema, listaPreguntas);
+            TemaControlador.importarTemas(modelo, listaPreguntas);
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
+        // TODO add your handling code here:
+        VentanaJugar v = new VentanaJugar(modelo);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnJugarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +194,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnJugar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JMenu jMenu1;

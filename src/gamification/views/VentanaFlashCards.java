@@ -5,6 +5,7 @@
  */
 package gamification.views;
 
+import gamification.domain.*;
 import java.util.*;
 
 /**
@@ -13,8 +14,8 @@ import java.util.*;
  */
 public class VentanaFlashCards extends javax.swing.JFrame {
 
-    ArrayList<String> preguntas;
-    ArrayList<String> respuestas;
+    ArrayList<String> preguntas = new ArrayList<>();
+    ArrayList<String> respuestas = new ArrayList<>();
     private int contador = 0;
     private boolean mostrarRespuesta = false;
 
@@ -25,11 +26,33 @@ public class VentanaFlashCards extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VentanaFlashCards(ArrayList<String> unasPreguntas, ArrayList<String> unasRespuestas) {
-        preguntas = unasPreguntas;
-        respuestas = unasRespuestas;
+    public VentanaFlashCards(ArrayList<Tema> temasSeleccionados){
+        cargarTemas(temasSeleccionados);
         initComponents();
         mostrarPregunta();
+    
+    }
+    
+    public void cargarTemas(ArrayList<Tema> temasSeleccionados){
+        String titulo = "";
+        for(Tema tema : temasSeleccionados){
+            //titulo
+            titulo = titulo + " " + tema.getNombre();
+            
+            //carga preguntas
+            for(String pregunta : tema.getPreguntas().keySet()){
+                preguntas.add(pregunta);
+            }
+            
+            //carga respuestas
+            for(String respuesta : tema.getPreguntas().values()){
+                respuestas.add(respuesta);
+            }
+            
+        }
+        
+        this.setTitle(titulo);
+    
     }
 
     public void mostrarPregunta() {
@@ -86,7 +109,7 @@ public class VentanaFlashCards extends javax.swing.JFrame {
         getContentPane().add(btnAtras);
         btnAtras.setBounds(220, 210, 90, 32);
 
-        setBounds(0, 0, 414, 337);
+        setBounds(0, 0, 424, 337);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed

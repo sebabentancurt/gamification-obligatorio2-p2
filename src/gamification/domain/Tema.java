@@ -1,8 +1,6 @@
 package gamification.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 import javax.swing.DefaultListModel;
 
 /*
@@ -88,6 +86,10 @@ public class Tema {
     
     public String toString(){
         return this.getNombre() + ": " + this.preguntas.size();
+    }
+    
+    public HashMap<String, String> getPreguntas(){
+        return preguntas;
     }
 
 }
