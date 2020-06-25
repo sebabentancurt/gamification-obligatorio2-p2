@@ -34,12 +34,12 @@ public class VentanaFlashCards extends javax.swing.JFrame {
 
     public void mostrarPregunta() {
         String texto;
-        if(mostrarRespuesta){
+        if (mostrarRespuesta) {
             texto = respuestas.get(contador);
-        }else{
+        } else {
             texto = preguntas.get(contador);
         }
-        
+
         btnPregunta.setText(texto);
     }
 
@@ -75,7 +75,7 @@ public class VentanaFlashCards extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAnterior);
-        btnAnterior.setBounds(90, 210, 90, 32);
+        btnAnterior.setBounds(90, 210, 90, 22);
 
         btnAtras.setText("Siguiente");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -84,9 +84,10 @@ public class VentanaFlashCards extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAtras);
-        btnAtras.setBounds(220, 210, 90, 32);
+        btnAtras.setBounds(220, 210, 90, 22);
 
-        setBounds(0, 0, 414, 337);
+        setSize(new java.awt.Dimension(414, 337));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
@@ -100,11 +101,11 @@ public class VentanaFlashCards extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        if (contador < preguntas.size() - 1){
+        if (contador < preguntas.size() - 1) {
             contador++;
-        
+
         }
-        mostrarRespuesta = false;        
+        mostrarRespuesta = false;
         mostrarPregunta();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
@@ -121,7 +122,7 @@ public class VentanaFlashCards extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

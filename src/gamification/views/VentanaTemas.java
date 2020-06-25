@@ -57,7 +57,7 @@ public class VentanaTemas extends javax.swing.JFrame {
         setTitle("Gestionar Temas");
         getContentPane().setLayout(null);
         getContentPane().add(txtNombre);
-        txtNombre.setBounds(20, 30, 240, 36);
+        txtNombre.setBounds(20, 30, 240, 22);
 
         txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,11 +69,11 @@ public class VentanaTemas extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre;");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 10, 50, 19);
+        jLabel1.setBounds(20, 10, 50, 16);
 
         jLabel2.setText("Descripcion:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 70, 80, 19);
+        jLabel2.setBounds(20, 70, 80, 16);
 
         lstTemas.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -92,7 +92,7 @@ public class VentanaTemas extends javax.swing.JFrame {
 
         jLabel3.setText("Lista:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(290, 20, 70, 19);
+        jLabel3.setBounds(290, 20, 70, 16);
 
         btnAgregarModificar.setText("Agregar/Modificar");
         btnAgregarModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,8 @@ public class VentanaTemas extends javax.swing.JFrame {
         getContentPane().add(btnEliminar1);
         btnEliminar1.setBounds(320, 220, 130, 40);
 
-        setBounds(0, 0, 477, 307);
+        setSize(new java.awt.Dimension(477, 307));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
