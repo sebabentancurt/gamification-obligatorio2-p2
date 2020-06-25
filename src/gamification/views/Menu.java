@@ -7,11 +7,15 @@ package gamification.views;
 
 import gamification.TemaControlador;
 import gamification.domain.Sistema;
+import gamification.helpers.ArchivoGrabacion;
 import gamification.helpers.ArchivoLectura;
+import gamification.helpers.Herramientas;
+import java.awt.HeadlessException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,7 +49,8 @@ public class Menu extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        btnJugar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -69,10 +74,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnJugar.setText("Jugar");
-        btnJugar.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Exportar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnJugarActionPerformed(evt);
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Generar ");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -106,7 +118,8 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(481, 481, 481)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4)
                     .addComponent(jButton3)
                     .addComponent(jButton2))
                 .addContainerGap(89, Short.MAX_VALUE))
@@ -118,12 +131,15 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(btnJugar)
-                .addContainerGap(339, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addContainerGap(345, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -141,21 +157,56 @@ public class Menu extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int result = fileChooser.showOpenDialog(this);
+        ArchivoGrabacion grab = new ArchivoGrabacion("BITACORA.txt");
         if (result == JFileChooser.APPROVE_OPTION) {
             // user selects a file
-            File selectedFile = fileChooser.getSelectedFile();
-            ArchivoLectura arch = new ArchivoLectura(selectedFile.getAbsolutePath());
-            ArrayList<List> listaPreguntas = arch.listarDeAN(3);
-            TemaControlador.importarTemas(modelo, listaPreguntas);
+            try {
+                File selectedFile = fileChooser.getSelectedFile();
+                ArchivoLectura arch = new ArchivoLectura(selectedFile.getAbsolutePath());
+                ArrayList<List> listaPreguntas = arch.listarDeAN(LINEAS_PREGUNTA);
+                ArrayList<Integer> resultado = TemaControlador.importarTemas(sistema, listaPreguntas, LINEAS_PREGUNTA);
+
+                String bitacora = "Agregadas:" + resultado.get(1) + " Actualizadas:" + resultado.get(2) + " Ignoradas:" + resultado.get(0) + " Fecha:" + Herramientas.getTime();
+                grab.grabarLinea(bitacora);
+                grab.cerrar();
+                String mensaje = "Se importo correctamente las preguntas. \nAgregadas: " + resultado.get(1)
+                        + "\nActualizadas: " + resultado.get(2) + "\nIgnoradas: " + resultado.get(0);
+                JOptionPane.showMessageDialog(rootPane, mensaje, "Importacion", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al importar. Intente nuevamente", "Importacion", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        VentanaJugar v = new VentanaJugar(modelo);
-        v.setVisible(true);
-    }//GEN-LAST:event_btnJugarActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                File selectedFile = fileChooser.getSelectedFile();
+                TemaControlador.exportarTemas(sistema, selectedFile.getAbsolutePath() + "/DATOS.txt");
+                JOptionPane.showMessageDialog(rootPane, "Preguntas exportadas correctamentes", "Exportacion", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (HeadlessException e) {
+                JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al exportar. Intente nuevamente", "Exportacion", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+
+        VentanaGenerar generar = new VentanaGenerar(this, rootPaneCheckingEnabled, this.sistema);
+        generar.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+    private static final int LINEAS_PREGUNTA = 3;
 
     /**
      * @param args the command line arguments
@@ -197,6 +248,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnJugar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
