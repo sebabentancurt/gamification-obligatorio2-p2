@@ -7,8 +7,10 @@ package gamification.views;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 import javax.swing.*;
 
 /**
@@ -34,18 +36,20 @@ public final class VentanaMemory extends javax.swing.JFrame {
         crearBotones();
     }
 
-    private VentanaMemory() {
+    public VentanaMemory() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void filtrarPreguntas(HashMap<String, String> preguntasSinFiltrar) {
-        String[] keys = (String[]) preguntasSinFiltrar.keySet().toArray();
+        Set<String> keySet = preguntasSinFiltrar.keySet();
+        ArrayList<String> keys = new ArrayList<>(keySet);
+
         Random r = new Random();
 
         for (int i = 0; i < 6; i++) {
-            int randomNumber = r.nextInt(keys.length);
-            String pregunta = keys[randomNumber];
-            keys
+            int randomNumber = r.nextInt(keys.size());
+            String pregunta = keys.get(randomNumber);
+            keys.remove(pregunta);
             this.preguntas.put(pregunta, preguntasSinFiltrar.get(pregunta));
         }
     }
@@ -57,7 +61,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         for (int i = 0; i < cantFilas; i++) {
             for (int j = 0; j < cantColumnas; j++) {
                 JButton jButton = new JButton();
-                jButton.addActionListener(new ListenerBoton(i, j));
+                jButton.addActionListener(new ListenerBoton("pregunta", "Texto de pregunta"));
                 panelInferior.add(jButton);
                 botones[i][j] = jButton;
 
@@ -160,25 +164,26 @@ public final class VentanaMemory extends javax.swing.JFrame {
 
     private class ListenerBoton implements ActionListener {
 
-        private int x;
-        private int y;
+        private String tipo;
+        private String pregunta;
 
-        public ListenerBoton(int i, int j) {
+        public ListenerBoton(String tipo, String pregunta) {
             // en el constructor se almacena la fila y columna que se presionó
-            x = i;
-            y = j;
+            this.tipo = tipo;
+            this.pregunta = pregunta;
         }
 
         public void actionPerformed(ActionEvent e) {
             // cuando se presiona un botón, se ejecutará este método
-            clickBoton(x, y);
+            clickBoton(tipo, pregunta);
         }
     }
 
-    private void clickBoton(int fila, int columna) {
+    private void clickBoton(String tipo, String pregunta) {
         // Método a completar!.
         // En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
         // fila 0 y columna 0 corresponden a la posición de arriba a la izquierda.
         // Debe indicarse cómo responder al click de ese botón.
+
     }
 }
