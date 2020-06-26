@@ -6,7 +6,8 @@
 package gamification.views;
 
 import gamification.domain.*;
-import java.util.ArrayList;
+import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +17,8 @@ public class VentanaJugar extends javax.swing.JFrame {
 
     private Sistema modelo;
     private ArrayList<Tema> temasSeleccionados;
+    private HashMap<String, String> preguntasMemory;
+    private String tituloMemory;
 
     /**
      * Creates new form VentanaJugar
@@ -162,7 +165,7 @@ public class VentanaJugar extends javax.swing.JFrame {
         } catch (Exception NullPointerException) {
 
         }
-        if(!temasSeleccionados.contains(tema)){
+        if (!temasSeleccionados.contains(tema)) {
             temasSeleccionados.add(tema);
             cargarListas();
         }
@@ -170,14 +173,38 @@ public class VentanaJugar extends javax.swing.JFrame {
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         // TODO add your handling code here:
-        if(radioFlash.isSelected()){
-            VentanaFlashCards ventanaFlash = new VentanaFlashCards(temasSeleccionados);
-            ventanaFlash.setVisible(true);
-        }
-        else if(radioMemory.isSelected()){
-        
+        if (radioFlash.isSelected()) {
+            if (contarPreguntas() > 0) {
+                VentanaFlashCards ventanaFlash = new VentanaFlashCards(temasSeleccionados);
+                ventanaFlash.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No hay suficientes preguntas para jugar", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (radioMemory.isSelected()) {
+            if (contarPreguntas() > 5) {
+                VentanaMemory ventanaMem = new VentanaMemory(tituloMemory, preguntasMemory);
+                ventanaMem.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No hay suficientes preguntas para jugar", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnJugarActionPerformed
+
+    private int contarPreguntas() {
+        preguntasMemory.clear();
+        tituloMemory = "";
+        
+        int cantidad = 0;
+        for (Tema tema : temasSeleccionados) {
+            preguntasMemory.putAll(tema.getPreguntas());
+            tituloMemory = tituloMemory + " " + tema.getNombre();
+            for (String pregunta : tema.getPreguntas().keySet()) {
+                cantidad++;
+            }
+        }
+
+        return cantidad;
+    }
 
     /**
      * @param args the command line arguments
