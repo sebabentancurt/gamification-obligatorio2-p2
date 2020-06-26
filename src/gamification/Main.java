@@ -34,6 +34,8 @@ public class Main {
         //v.setVisible(true);
         Menu ve = new Menu(s);
         ve.setVisible(true);
+        VentanaMemory ven = new VentanaMemory();
+        ven.setVisible(true);
     }
 
 }
