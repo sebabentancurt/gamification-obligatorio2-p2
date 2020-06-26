@@ -7,22 +7,47 @@ package gamification.views;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Random;
 import javax.swing.*;
 
 /**
  *
  * @author Mateo
  */
-public class VentanaMemory extends javax.swing.JFrame {
+public final class VentanaMemory extends javax.swing.JFrame {
 
+    private HashMap<String, String> preguntas;
+
+    //private HashMap<String, String> preguntas;
     private JButton[][] botones;
 
     /**
      * Creates new form VentanaMemory
+     *
+     * @param titulo
+     * @param preguntasSinFiltrar
      */
-    public VentanaMemory() {
+    public VentanaMemory(String titulo, HashMap<String, String> preguntasSinFiltrar) {
+        this.filtrarPreguntas(preguntasSinFiltrar);
         initComponents();
         crearBotones();
+    }
+
+    private VentanaMemory() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void filtrarPreguntas(HashMap<String, String> preguntasSinFiltrar) {
+        String[] keys = (String[]) preguntasSinFiltrar.keySet().toArray();
+        Random r = new Random();
+
+        for (int i = 0; i < 6; i++) {
+            int randomNumber = r.nextInt(keys.length);
+            String pregunta = keys[randomNumber];
+            keys
+            this.preguntas.put(pregunta, preguntasSinFiltrar.get(pregunta));
+        }
     }
 
     public void crearBotones() {
@@ -94,7 +119,7 @@ public class VentanaMemory extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -116,6 +141,7 @@ public class VentanaMemory extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new VentanaMemory().setVisible(true);
             }
@@ -138,21 +164,21 @@ public class VentanaMemory extends javax.swing.JFrame {
         private int y;
 
         public ListenerBoton(int i, int j) {
-        // en el constructor se almacena la fila y columna que se presionó
+            // en el constructor se almacena la fila y columna que se presionó
             x = i;
             y = j;
         }
 
         public void actionPerformed(ActionEvent e) {
-        // cuando se presiona un botón, se ejecutará este método
+            // cuando se presiona un botón, se ejecutará este método
             clickBoton(x, y);
         }
     }
 
     private void clickBoton(int fila, int columna) {
-    // Método a completar!.
-    // En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
-    // fila 0 y columna 0 corresponden a la posición de arriba a la izquierda.
-    // Debe indicarse cómo responder al click de ese botón.
+        // Método a completar!.
+        // En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
+        // fila 0 y columna 0 corresponden a la posición de arriba a la izquierda.
+        // Debe indicarse cómo responder al click de ese botón.
     }
 }
