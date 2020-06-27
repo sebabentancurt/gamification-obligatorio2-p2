@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import javax.swing.*;
@@ -19,7 +20,9 @@ import javax.swing.*;
  */
 public final class VentanaMemory extends javax.swing.JFrame {
 
-    private HashMap<String, String> preguntas;
+    private HashMap<String, String> preguntas = new HashMap<>();
+    private String[] preguntasOrdenadas = new String[12];
+    private String[] preguntasDesordenadas = new String[12];
     private String[][] textos = new String[3][4];
     private String[][] tipos = new String[3][4];
     private boolean[][] activos = new boolean[3][4];
@@ -32,10 +35,38 @@ public final class VentanaMemory extends javax.swing.JFrame {
      * @param preguntasSinFiltrar
      */
     public VentanaMemory(String titulo, HashMap<String, String> preguntasSinFiltrar) {
-        //this.filtrarPreguntas(preguntasSinFiltrar);
-        preguntas = preguntasSinFiltrar;
+        this.filtrarPreguntas(preguntasSinFiltrar);
+        setPreguntasOrdenadas(preguntas);
+        preguntasDesordenadas = desordenarPreguntas(preguntasOrdenadas);
         initComponents();
         crearBotones();
+    }
+
+    public void setPreguntasOrdenadas(HashMap<String, String> preguntasSinFiltrar) {
+        int index = 0;
+        for (Map.Entry<String, String> entry : preguntasSinFiltrar.entrySet()) {
+            Object key = entry.getKey();
+            Object val = entry.getValue();
+            preguntasOrdenadas[index] = (String) key;
+            index++;
+            preguntasOrdenadas[index] = (String) val;
+            index++;
+        }
+    }
+
+    public String[] desordenarPreguntas(String[] preguntasOrdenadas) {
+        String[] ar = preguntasOrdenadas.clone();
+        Random rnd = new Random();
+
+        for (int i = ar.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            // Simple swap
+            String a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
+
+        return ar;
     }
 
     public void filtrarPreguntas(HashMap<String, String> preguntasSinFiltrar) {
@@ -53,6 +84,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
     }
 
     public void crearBotones() {
+        int index = 0;
         int cantFilas = 3;
         int cantColumnas = 4;
         botones = new JButton[cantFilas][cantColumnas];
@@ -62,8 +94,9 @@ public final class VentanaMemory extends javax.swing.JFrame {
                 jButton.addActionListener(new ListenerBoton(i, j));
                 panelInferior.add(jButton);
                 botones[i][j] = jButton;
-                textos[i][j] = "PREGUNTA/RESPUESTA";
-                        
+                textos[i][j] = preguntasDesordenadas[index];
+                index++;
+
                 botones[i][j].setMargin(new Insets(-5, -5, -5, -5));
                 botones[i][j].setBackground(Color.RED);
                 botones[i][j].setText("<html><p>" + "BOTON" + "</p></html>");
