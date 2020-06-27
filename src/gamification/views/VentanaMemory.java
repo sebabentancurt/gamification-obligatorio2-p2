@@ -33,6 +33,10 @@ public final class VentanaMemory extends javax.swing.JFrame {
     private JButton[][] botones;
     private boolean ayudaParcial = false;
     private boolean ayudaTotal = false;
+    private int[] seleccion1 = new int[2];
+    private int[] seleccion2 = new int[2];
+    private boolean preseleccion = false;
+    private int puntaje = 0;
 
     /**
      * Creates new form VentanaMemory
@@ -122,23 +126,28 @@ public final class VentanaMemory extends javax.swing.JFrame {
             }
         }
     }
-    
-    public void actualizarTablero(){
+
+    public void actualizarTablero() {
+        actualizarPuntaje();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
-                if(ayudaTotal){
+                if (ayudaTotal) {
                     botones[i][j].setText(textos[i][j]);
-                }else if(ayudaParcial){
+                } else if (ayudaParcial) {
                     botones[i][j].setText(tipos[i][j]);
-                }else{                
-                    if(activos[i][j]){
+                } else {
+                    if (activos[i][j]) {
                         botones[i][j].setText(textos[i][j]);
-                    }else{
+                    } else {
                         botones[i][j].setText("");
                     }
-                }    
+                }
             }
         }
+    }
+
+    public void actualizarPuntaje() {
+        lblPuntaje.setText("Puntaje: " + puntaje);
     }
 
     /**
@@ -311,5 +320,42 @@ public final class VentanaMemory extends javax.swing.JFrame {
         // fila 0 y columna 0 corresponden a la posici�n de arriba a la izquierda.
         // Debe indicarse c�mo responder al click de ese bot�n.
         botones[fila][col].setText(textos[fila][col]);
+        if (!preseleccion) {
+            seleccion1[0] = fila;
+            seleccion1[1] = col;
+            preseleccion = true;
+        } else {
+            seleccion2[0] = fila;
+            seleccion2[1] = col;
+            preseleccion = false;
+
+            checkMatch();
+
+        }
     }
+
+    private void checkMatch() {
+        String card1 = textos[seleccion1[0]][seleccion1[1]];
+        String card2 = textos[seleccion2[0]][seleccion2[1]];
+        boolean match = false;
+
+        for (Map.Entry<String, String> entry : preguntas.entrySet()) {
+            Object key = (String) entry.getKey();
+            Object val = (String) entry.getValue();
+
+            if ((card1.equals(key) && card2.equals(val)) || (card1.equals(val) && card2.equals(key))) {
+                match = true;
+                activos[seleccion1[0]][seleccion1[1]] = true;
+                activos[seleccion2[0]][seleccion2[1]] = true;
+            }
+        }
+        if (match) {
+            puntaje += 50;
+        }else{
+            puntaje -= 10;
+            JOptionPane.showMessageDialog(rootPane, "Match incorrecto: resta 10 puntos", "Incorrecto", JOptionPane.ERROR_MESSAGE);
+        }
+        actualizarTablero();
+    }
+
 }
