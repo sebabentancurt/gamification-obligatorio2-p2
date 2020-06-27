@@ -21,6 +21,11 @@ public class ArchivoLectura {
     private Scanner in;
     private String linea;
 
+    /**
+     * Instancia un escaner para leer un archivo
+     *
+     * @param unNombre
+     */
     public ArchivoLectura(String unNombre) {
         try {
             in = new Scanner(Paths.get(unNombre));
@@ -30,6 +35,12 @@ public class ArchivoLectura {
         }
     }
 
+    /**
+     * Verifica si existen más lineas para leer o si estoy en el final del
+     * archivo
+     *
+     * @return
+     */
     public boolean hayMasLineas() {
         boolean hay = false;
         linea = null;
@@ -40,6 +51,12 @@ public class ArchivoLectura {
         return hay;
     }
 
+    /**
+     * Lista lineas de a X cantidad
+     *
+     * @param cant
+     * @return
+     */
     public ArrayList<List> listarDeAN(int cant) {
         ArrayList<List> arrayList = new ArrayList<>();
         List<String> list = new ArrayList<>();
@@ -62,11 +79,18 @@ public class ArchivoLectura {
         return arrayList;
     }
 
+    /**
+     * Devuelve la ultima linea leida
+     *
+     * @return
+     */
     public String linea() {
-// devuelve la última linea leida
         return linea;
     }
 
+    /**
+     * Cierra la conexion con el archivo
+     */
     public void cerrar() {
         in.close();
     }

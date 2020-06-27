@@ -15,6 +15,11 @@ import java.time.format.DateTimeFormatter;
  */
 public class Herramientas {
 
+    /**
+     * Deuelve el tiempo formateado
+     *
+     * @return
+     */
     public static String getTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

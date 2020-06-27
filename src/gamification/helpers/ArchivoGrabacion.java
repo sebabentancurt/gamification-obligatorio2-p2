@@ -14,6 +14,11 @@ public class ArchivoGrabacion {
 
     private Formatter out;
 
+    /**
+     * Instancia lo necesario para escribir en un archivo
+     *
+     * @param unNombre
+     */
     public ArchivoGrabacion(String unNombre) {
         try {
             FileWriter f = new FileWriter(unNombre, true);
@@ -27,10 +32,18 @@ public class ArchivoGrabacion {
         }
     }
 
+    /**
+     * Imprime una linea en el archivo
+     *
+     * @param linea
+     */
     public void grabarLinea(String linea) {
         out.format("%s%n", linea);
     }
 
+    /**
+     * Cierra la conexion con el archivo
+     */
     public void cerrar() {
         out.close();
     }

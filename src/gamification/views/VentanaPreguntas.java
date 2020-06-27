@@ -159,6 +159,9 @@ public class VentanaPreguntas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    /**
+     * Carga las preguntas en el JList
+     */
     private void cargarLista() {
         lstPreguntas.setModel(tema.modelListarPreguntas());
     }
@@ -166,6 +169,11 @@ public class VentanaPreguntas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPreguntaActionPerformed
 
+    /**
+     * Al seleccionar un valor del JList muestra la pregunta en los campos.
+     *
+     * @param evt
+     */
     private void lstPreguntasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPreguntasValueChanged
         // TODO add your handling code here:
         String pregunta = lstPreguntas.getSelectedValue();
@@ -181,6 +189,11 @@ public class VentanaPreguntas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRespuestaActionPerformed
 
+    /**
+     * Elimina pregunta seleccionada en el JList
+     *
+     * @param evt
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         String pregunta = lstPreguntas.getSelectedValue();

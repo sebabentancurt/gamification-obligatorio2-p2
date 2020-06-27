@@ -22,7 +22,7 @@ public class VentanaGenerar extends javax.swing.JDialog {
     private final Sistema sistema;
 
     /**
-     * Creates new form NewJDialog
+     * Ventana para generar temas y preguntas
      *
      * @param parent
      * @param modal
@@ -172,9 +172,12 @@ public class VentanaGenerar extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Accion click para boton de generar.
+     *
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
         Integer temas = Integer.parseInt(txtTemas.getText());
         Integer preguntasPorTema = Integer.parseInt(txtPreguntas.getText());
         TemaControlador.generarTemas(this.sistema, temas, preguntasPorTema);

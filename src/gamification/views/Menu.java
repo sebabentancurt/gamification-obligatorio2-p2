@@ -47,10 +47,10 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnGestionarTemas = new javax.swing.JButton();
+        btnImportar = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
+        btnGenerarTemas = new javax.swing.JButton();
         btnJugar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
@@ -61,31 +61,31 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Gestionar Temas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnGestionarTemas.setText("Gestionar Temas");
+        btnGestionarTemas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnGestionarTemasActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Importar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnImportar.setText("Importar");
+        btnImportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnImportarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Exportar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnExportarActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Generar ");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerarTemas.setText("Generar temas");
+        btnGenerarTemas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnGenerarTemasActionPerformed(evt);
             }
         });
 
@@ -108,21 +108,20 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
-                            .addComponent(jButton2)
-                            .addGap(5, 5, 5)
-                            .addComponent(jButton3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnJugar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton4))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(163, 163, 163)
-                            .addComponent(jButton5))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGestionarTemas)
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGenerarTemas)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnImportar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnJugar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnExportar)))))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
@@ -130,14 +129,14 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(btnGestionarTemas)
+                    .addComponent(btnImportar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4)
+                        .addComponent(btnExportar)
                         .addComponent(btnJugar)))
-                .addGap(5, 5, 5)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGenerarTemas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(22, 22, 22))
         );
@@ -146,20 +145,24 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnGestionarTemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarTemasActionPerformed
         // TODO add your handling code here:
         VentanaTemas view = new VentanaTemas(sistema);
         view.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnGestionarTemasActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    /**
+     * Importa preguntas y temas de un archivo seleccionado.
+     *
+     * @param evt
+     */
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int result = fileChooser.showOpenDialog(this);
         ArchivoGrabacion grab = new ArchivoGrabacion("BITACORA.txt");
         if (result == JFileChooser.APPROVE_OPTION) {
-            // user selects a file
             try {
                 File selectedFile = fileChooser.getSelectedFile();
                 ArchivoLectura arch = new ArchivoLectura(selectedFile.getAbsolutePath());
@@ -179,9 +182,14 @@ public class Menu extends javax.swing.JFrame {
 
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnImportarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    /**
+     * Exporta temas y preguntas en el directorio seleccionado
+     *
+     * @param evt
+     */
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
@@ -198,14 +206,14 @@ public class Menu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al exportar. Intente nuevamente", "Exportacion", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnExportarActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnGenerarTemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarTemasActionPerformed
         // TODO add your handling code here:
 
         VentanaGenerar generar = new VentanaGenerar(this, rootPaneCheckingEnabled, this.sistema);
         generar.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnGenerarTemasActionPerformed
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         // TODO add your handling code here:
@@ -262,11 +270,11 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnGenerarTemas;
+    private javax.swing.JButton btnGestionarTemas;
+    private javax.swing.JButton btnImportar;
     private javax.swing.JButton btnJugar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }
