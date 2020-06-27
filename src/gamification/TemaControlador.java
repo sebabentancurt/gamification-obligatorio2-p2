@@ -69,7 +69,7 @@ public class TemaControlador {
     public static void generarTemas(Sistema sistema, int temas, int preguntasPorTema) {
         for (int iTema = 1; iTema <= temas; iTema++) {
             String sTema = String.valueOf(iTema);
-            Tema tema = new Tema("T: " + String.valueOf(iTema), "Descripción de T" + String.valueOf(iTema));
+            Tema tema = new Tema("T:" + sTema, "Descripción de T" + String.valueOf(iTema));
 
             for (int iPregunta = 1; iPregunta <= preguntasPorTema; iPregunta++) {
                 String sPregunta = String.valueOf(iPregunta);
