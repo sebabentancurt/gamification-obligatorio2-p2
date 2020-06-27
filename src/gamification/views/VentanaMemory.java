@@ -20,8 +20,9 @@ import javax.swing.*;
 public final class VentanaMemory extends javax.swing.JFrame {
 
     private HashMap<String, String> preguntas;
-
-    //private HashMap<String, String> preguntas;
+    private String[][] textos = new String[3][4];
+    private String[][] tipos = new String[3][4];
+    private boolean[][] activos = new boolean[3][4];
     private JButton[][] botones;
 
     /**
@@ -31,7 +32,8 @@ public final class VentanaMemory extends javax.swing.JFrame {
      * @param preguntasSinFiltrar
      */
     public VentanaMemory(String titulo, HashMap<String, String> preguntasSinFiltrar) {
-        this.filtrarPreguntas(preguntasSinFiltrar);
+        //this.filtrarPreguntas(preguntasSinFiltrar);
+        preguntas = preguntasSinFiltrar;
         initComponents();
         crearBotones();
     }
@@ -57,10 +59,11 @@ public final class VentanaMemory extends javax.swing.JFrame {
         for (int i = 0; i < cantFilas; i++) {
             for (int j = 0; j < cantColumnas; j++) {
                 JButton jButton = new JButton();
-                jButton.addActionListener(new ListenerBoton("pregunta", "Texto de pregunta"));
+                jButton.addActionListener(new ListenerBoton(i, j));
                 panelInferior.add(jButton);
                 botones[i][j] = jButton;
-
+                textos[i][j] = "PREGUNTA/RESPUESTA";
+                        
                 botones[i][j].setMargin(new Insets(-5, -5, -5, -5));
                 botones[i][j].setBackground(Color.RED);
                 botones[i][j].setText("<html><p>" + "BOTON" + "</p></html>");
@@ -164,26 +167,26 @@ public final class VentanaMemory extends javax.swing.JFrame {
 
     private class ListenerBoton implements ActionListener {
 
-        private String tipo;
-        private String pregunta;
+        private int x;
+        private int y;
 
-        public ListenerBoton(String tipo, String pregunta) {
+        public ListenerBoton(int fila, int col) {
             // en el constructor se almacena la fila y columna que se presionó
-            this.tipo = tipo;
-            this.pregunta = pregunta;
+            x = fila;
+            y = col;
         }
 
         public void actionPerformed(ActionEvent e) {
             // cuando se presiona un botón, se ejecutará este método
-            clickBoton(tipo, pregunta);
+            clickBoton(x, y);
         }
     }
 
-    private void clickBoton(String tipo, String pregunta) {
+    private void clickBoton(int fila, int col) {
         // Método a completar!.
         // En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
         // fila 0 y columna 0 corresponden a la posición de arriba a la izquierda.
         // Debe indicarse cómo responder al click de ese botón.
-
+        botones[fila][col].setText(textos[fila][col]);
     }
 }

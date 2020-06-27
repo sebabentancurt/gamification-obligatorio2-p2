@@ -17,7 +17,7 @@ public class VentanaJugar extends javax.swing.JFrame {
 
     private Sistema modelo;
     private ArrayList<Tema> temasSeleccionados;
-    private HashMap<String, String> preguntasMemory;
+    private HashMap<String, String> preguntasMemory = new HashMap<>();;
     private String tituloMemory;
 
     /**
@@ -191,7 +191,7 @@ public class VentanaJugar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJugarActionPerformed
 
     private int contarPreguntas() {
-        preguntasMemory.clear();
+        preguntasMemory.clear(); 
         tituloMemory = "";
 
         int cantidad = 0;

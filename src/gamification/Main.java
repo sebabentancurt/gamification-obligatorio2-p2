@@ -21,12 +21,15 @@ public class Main {
     public static void main(String[] args) {
 
         Sistema s = new Sistema();
+        
+        /*
         Tema tema = new Tema();
         tema.agregarPregunta("HOLA", "CHAU");
         tema.agregarPregunta("PREGUNTA", "RESPUESTA");
         tema.agregarPregunta("Nota", "35");
         s.agregarTema(tema);
-
+        */
+        
         //VentanaTemas v = new VentanaTemas(s);
         //  v.setVisible(true);
         //VentanaFlashCards v = new VentanaFlashCards(preguntas, respuestas);
