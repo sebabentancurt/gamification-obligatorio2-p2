@@ -17,7 +17,8 @@ public class VentanaJugar extends javax.swing.JFrame {
 
     private Sistema modelo;
     private ArrayList<Tema> temasSeleccionados;
-    private HashMap<String, String> preguntasMemory = new HashMap<>();;
+    private HashMap<String, String> preguntasMemory = new HashMap<>();
+    ;
     private String tituloMemory;
 
     /**
@@ -62,7 +63,7 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnJugar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lstTemas.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -191,7 +192,7 @@ public class VentanaJugar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJugarActionPerformed
 
     private int contarPreguntas() {
-        preguntasMemory.clear(); 
+        preguntasMemory.clear();
         tituloMemory = "";
 
         int cantidad = 0;

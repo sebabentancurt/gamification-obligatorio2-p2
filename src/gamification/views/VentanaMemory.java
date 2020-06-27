@@ -7,11 +7,15 @@ package gamification.views;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 /**
@@ -40,6 +44,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         preguntasDesordenadas = desordenarPreguntas(preguntasOrdenadas);
         initComponents();
         crearBotones();
+
     }
 
     public void setPreguntasOrdenadas(HashMap<String, String> preguntasSinFiltrar) {
@@ -135,6 +140,11 @@ public final class VentanaMemory extends javax.swing.JFrame {
         panelSuperior.add(btnText);
 
         btnSonido.setText("Sonido");
+        btnSonido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSonidoActionPerformed(evt);
+            }
+        });
         panelSuperior.add(btnSonido);
 
         lblPuntaje.setText("Puntaje: ---");
@@ -147,6 +157,21 @@ public final class VentanaMemory extends javax.swing.JFrame {
 
         setBounds(0, 0, 414, 337);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonidoActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            Clip clip = AudioSystem.getClip();
+            URL url = this.getClass().getClassLoader().getResource("../resources/melodyloop.mp3");
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(url);
+            clip.open(inputStream);
+            clip.start();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }//GEN-LAST:event_btnSonidoActionPerformed
 
     /**
      * @param args the command line arguments
