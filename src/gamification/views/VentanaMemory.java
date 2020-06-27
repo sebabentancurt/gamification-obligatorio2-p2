@@ -44,7 +44,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         preguntasDesordenadas = desordenarPreguntas(preguntasOrdenadas);
         initComponents();
         crearBotones();
-
+        actualizarTablero();
     }
 
     public void setPreguntasOrdenadas(HashMap<String, String> preguntasSinFiltrar) {
@@ -99,13 +99,34 @@ public final class VentanaMemory extends javax.swing.JFrame {
                 jButton.addActionListener(new ListenerBoton(i, j));
                 panelInferior.add(jButton);
                 botones[i][j] = jButton;
+
                 textos[i][j] = preguntasDesordenadas[index];
                 index++;
+
+                String tipo;
+                if (preguntas.containsKey(textos[i][j])) {
+                    tipo = "PREGUNTA";
+                } else {
+                    tipo = "RESPUESTA";
+                }
+                tipos[i][j] = tipo;
 
                 botones[i][j].setMargin(new Insets(-5, -5, -5, -5));
                 botones[i][j].setBackground(Color.RED);
                 botones[i][j].setText("<html><p>" + "BOTON" + "</p></html>");
 
+            }
+        }
+    }
+    
+    public void actualizarTablero(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                if(activos[i][j]){
+                    botones[i][j].setText(textos[i][j]);
+                }else{
+                    botones[i][j].setText("?");
+                }
             }
         }
     }
@@ -229,22 +250,22 @@ public final class VentanaMemory extends javax.swing.JFrame {
         private int y;
 
         public ListenerBoton(int fila, int col) {
-            // en el constructor se almacena la fila y columna que se presionó
+            // en el constructor se almacena la fila y columna que se presion�
             x = fila;
             y = col;
         }
 
         public void actionPerformed(ActionEvent e) {
-            // cuando se presiona un botón, se ejecutará este método
+            // cuando se presiona un bot�n, se ejecutar� este m�todo
             clickBoton(x, y);
         }
     }
 
     private void clickBoton(int fila, int col) {
-        // Método a completar!.
-        // En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
-        // fila 0 y columna 0 corresponden a la posición de arriba a la izquierda.
-        // Debe indicarse cómo responder al click de ese botón.
+        // M�todo a completar!.
+        // En fila y columna se reciben las coordenas donde presion� el usuario, relativas al comienzo de la grilla
+        // fila 0 y columna 0 corresponden a la posici�n de arriba a la izquierda.
+        // Debe indicarse c�mo responder al click de ese bot�n.
         botones[fila][col].setText(textos[fila][col]);
     }
 }
