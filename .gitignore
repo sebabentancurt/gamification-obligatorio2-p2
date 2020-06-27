@@ -27,6 +27,7 @@ hs_err_pid*
 nbproject/private/*
 build/
 nbbuild/
+nbproject/
 dist/
 nbdist/
 nbactions.xml
