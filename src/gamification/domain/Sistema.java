@@ -20,11 +20,12 @@ public class Sistema {
         listaTemas = new ArrayList<Tema>();
     }
 
-    //getters
-    public ArrayList<Tema> getListaTemas() {
-        return listaTemas;
-    }
-
+    /**
+     * Agrega un tema sino existe en el sistema
+     *
+     * @param unTema
+     * @return
+     */
     public Tema agregarTema(Tema unTema) {
 
         if (!this.existeTema(unTema)) {
@@ -34,6 +35,12 @@ public class Sistema {
         return unTema;
     }
 
+    /**
+     * Obtiene tema a partir de un nombre
+     *
+     * @param nombre
+     * @return
+     */
     public Tema obtenerTema(String nombre) {
         Tema temp = new Tema();
         for (Tema tema : listaTemas) {
@@ -45,6 +52,12 @@ public class Sistema {
         return temp;
     }
 
+    /**
+     * Evalua si existe un tema en el sistema
+     *
+     * @param unTema
+     * @return
+     */
     public boolean existeTema(Tema unTema) {
         boolean existe = false;
 
@@ -57,8 +70,18 @@ public class Sistema {
         return existe;
     }
 
+    /**
+     * Elimina un tema del sistema
+     *
+     * @param unTema
+     */
     public void eliminarTema(Tema unTema) {
         this.getListaTemas().remove(unTema);
+    }
+
+    //---- Getters -----
+    public ArrayList<Tema> getListaTemas() {
+        return listaTemas;
     }
 
 }

@@ -33,16 +33,34 @@ public class Tema {
         preguntas = new HashMap<String, String>();
     }
 
+    /**
+     * Agrega una pregunta al tema, de existir la actualiza.
+     *
+     * @param question
+     * @param answer
+     * @return
+     */
     public boolean agregarPregunta(String question, String answer) {
         preguntas.put(question, answer);
         return true;
     }
 
+    /**
+     * Elimina una pregunta del tema
+     *
+     * @param pregunta
+     * @return
+     */
     public boolean eliminarPregunta(String pregunta) {
         preguntas.remove(pregunta);
         return true;
     }
 
+    /**
+     * Devuelve un ArrayList de las preguntas
+     *
+     * @return
+     */
     public ArrayList<String> listarPreguntas() {
         ArrayList<String> listaAux = new ArrayList<>();
         Iterator<String> it = preguntas.keySet().iterator();
@@ -52,6 +70,11 @@ public class Tema {
         return listaAux;
     }
 
+    /**
+     * Devuelve modelo con preguntas para JList
+     *
+     * @return
+     */
     public DefaultListModel modelListarPreguntas() {
         DefaultListModel model = new DefaultListModel<>();
         ArrayList<String> listaAux = new ArrayList<>();
@@ -63,11 +86,17 @@ public class Tema {
         return model;
     }
 
+    /**
+     * Obtiene la respuesta de una pregunta
+     *
+     * @param pregunta
+     * @return
+     */
     public String getRespuesta(String pregunta) {
         return preguntas.get(pregunta);
     }
 
-    //setters
+    //---- Setters -----
     public void setNombre(String unNombre) {
         this.nombre = unNombre;
     }
@@ -76,7 +105,7 @@ public class Tema {
         this.descripcion = unaDescripcion;
     }
 
-    //getters
+    //---- Getters -----
     public String getNombre() {
         return nombre;
     }
