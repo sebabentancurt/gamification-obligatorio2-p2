@@ -9,7 +9,8 @@ import gamification.domain.Tema;
 
 /**
  *
- * @author sebab
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public class VentanaPreguntas extends javax.swing.JFrame {
 

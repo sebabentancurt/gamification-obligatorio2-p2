@@ -11,13 +11,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Mateo
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public class VentanaJugar extends javax.swing.JFrame {
 
     private Sistema modelo;
     private ArrayList<Tema> temasSeleccionados;
-    private HashMap<String, String> preguntasMemory = new HashMap<>();    
+    private HashMap<String, String> preguntasMemory = new HashMap<>();
     private String tituloMemory;
 
     /**

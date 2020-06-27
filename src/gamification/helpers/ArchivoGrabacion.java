@@ -5,6 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Formatter;
 
+/**
+ *
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
+ */
 public class ArchivoGrabacion {
 
     private Formatter out;
