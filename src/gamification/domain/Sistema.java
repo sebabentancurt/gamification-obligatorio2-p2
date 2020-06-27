@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Mateo
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public class Sistema {
 

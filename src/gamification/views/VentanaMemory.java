@@ -20,7 +20,8 @@ import javax.swing.*;
 
 /**
  *
- * @author Mateo
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public final class VentanaMemory extends javax.swing.JFrame {
 
@@ -365,7 +366,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         }
         if (match) {
             puntaje += 50;
-        }else{
+        } else {
             puntaje -= 10;
             JOptionPane.showMessageDialog(rootPane, "Match incorrecto: resta 10 puntos", "Incorrecto", JOptionPane.ERROR_MESSAGE);
         }

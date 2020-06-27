@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author sebab
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public class VentanaGenerar extends javax.swing.JDialog {
 

@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * @author sebab
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public class Herramientas {
 

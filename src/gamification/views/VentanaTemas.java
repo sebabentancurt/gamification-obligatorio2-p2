@@ -10,7 +10,8 @@ import gamification.domain.Tema;
 
 /**
  *
- * @author Mateo
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public class VentanaTemas extends javax.swing.JFrame {
 

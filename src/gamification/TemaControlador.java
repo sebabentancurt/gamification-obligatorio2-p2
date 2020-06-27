@@ -13,10 +13,19 @@ import java.util.List;
 
 /**
  *
- * @author sebab
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public class TemaControlador {
 
+    /**
+     * Importa temas desde un archivo
+     *
+     * @param sistema
+     * @param array
+     * @param lineasPregunta
+     * @return
+     */
     public static ArrayList<Integer> importarTemas(Sistema sistema, ArrayList<List> array, int lineasPregunta) {
 
         int ignoradas = 0;
@@ -51,6 +60,13 @@ public class TemaControlador {
         return resultado;
     }
 
+    /**
+     * Exporta los temas con sus preguntas a un archivo
+     *
+     * @param sistema
+     * @param absolutePath
+     * @return
+     */
     public static boolean exportarTemas(Sistema sistema, String absolutePath) {
 
         ArchivoGrabacion grab = new ArchivoGrabacion(absolutePath);
@@ -66,6 +82,13 @@ public class TemaControlador {
         return true;
     }
 
+    /**
+     * Genera temas con preguntas automaticamente
+     *
+     * @param sistema
+     * @param temas
+     * @param preguntasPorTema
+     */
     public static void generarTemas(Sistema sistema, int temas, int preguntasPorTema) {
         for (int iTema = 1; iTema <= temas; iTema++) {
             String sTema = String.valueOf(iTema);

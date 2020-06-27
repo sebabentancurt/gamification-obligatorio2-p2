@@ -10,7 +10,8 @@ import javax.swing.DefaultListModel;
  */
 /**
  *
- * @author Mateo
+ * @author Mateo Sapiurka 211096
+ * @author Sebastián Bentancurt 225768
  */
 public class Tema {
 
@@ -50,19 +51,19 @@ public class Tema {
         }
         return listaAux;
     }
-    
-    public DefaultListModel modelListarPreguntas(){
+
+    public DefaultListModel modelListarPreguntas() {
         DefaultListModel model = new DefaultListModel<>();
         ArrayList<String> listaAux = new ArrayList<>();
         Iterator<String> it = preguntas.keySet().iterator();
-        
+
         while (it.hasNext()) {
-             model.addElement(it.next());
+            model.addElement(it.next());
         }
         return model;
-     }
-    
-    public String getRespuesta(String pregunta){
+    }
+
+    public String getRespuesta(String pregunta) {
         return preguntas.get(pregunta);
     }
 
@@ -83,12 +84,12 @@ public class Tema {
     public String getDescripcion() {
         return descripcion;
     }
-    
-    public String toString(){
+
+    public String toString() {
         return this.getNombre() + ": " + this.preguntas.size();
     }
-    
-    public HashMap<String, String> getPreguntas(){
+
+    public HashMap<String, String> getPreguntas() {
         return preguntas;
     }
 
