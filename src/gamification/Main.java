@@ -8,7 +8,6 @@ package gamification;
 import gamification.domain.Sistema;
 import gamification.domain.Tema;
 import gamification.views.*;
-import java.util.*;
 
 /**
  *
@@ -23,19 +22,17 @@ public class Main {
 
         Sistema s = new Sistema();
         Tema tema = new Tema();
-        tema.agregarPregunta("HOLA","CHAU");
+        tema.agregarPregunta("HOLA", "CHAU");
         tema.agregarPregunta("PREGUNTA", "RESPUESTA");
         tema.agregarPregunta("Nota", "35");
         s.agregarTema(tema);
-        
+
         //VentanaTemas v = new VentanaTemas(s);
-        //  v.setVisible(true);        
+        //  v.setVisible(true);
         //VentanaFlashCards v = new VentanaFlashCards(preguntas, respuestas);
         //v.setVisible(true);
         Menu ve = new Menu(s);
         ve.setVisible(true);
-        VentanaMemory ven = new VentanaMemory();
-        ven.setVisible(true);
     }
 
 }

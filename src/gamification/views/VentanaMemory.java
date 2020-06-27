@@ -36,10 +36,6 @@ public final class VentanaMemory extends javax.swing.JFrame {
         crearBotones();
     }
 
-    public VentanaMemory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void filtrarPreguntas(HashMap<String, String> preguntasSinFiltrar) {
         Set<String> keySet = preguntasSinFiltrar.keySet();
         ArrayList<String> keys = new ArrayList<>(keySet);
@@ -145,9 +141,13 @@ public final class VentanaMemory extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run(String titulo, HashMap preguntas) {
+                new VentanaMemory(titulo, preguntas).setVisible(true);
+            }
+
             @Override
             public void run() {
-                new VentanaMemory().setVisible(true);
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
     }
