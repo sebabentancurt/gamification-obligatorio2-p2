@@ -34,12 +34,14 @@ public class TemaControlador {
             Tema temaDomain = new Tema(tema, "A COMPLETAR");
 
             if (sistema.existeTema(temaDomain)) {
+                temaDomain = sistema.obtenerTema(tema);
                 modificadas++;
             } else {
+                temaDomain = sistema.agregarTema(temaDomain);
                 agregadas++;
             }
-            temaDomain = sistema.agregarTema(temaDomain);
             temaDomain.agregarPregunta(pregunta, respuesta);
+
         }
 
         ArrayList<Integer> resultado = new ArrayList<>();

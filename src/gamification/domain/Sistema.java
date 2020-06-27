@@ -33,6 +33,17 @@ public class Sistema {
         return unTema;
     }
 
+    public Tema obtenerTema(String nombre) {
+        Tema temp = new Tema();
+        for (Tema tema : listaTemas) {
+            if (tema.getNombre().equals(nombre)) {
+                temp = tema;
+            }
+        }
+
+        return temp;
+    }
+
     public boolean existeTema(Tema unTema) {
         boolean existe = false;
 

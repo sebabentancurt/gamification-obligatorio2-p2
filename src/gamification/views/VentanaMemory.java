@@ -7,7 +7,7 @@ package gamification.views;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.net.URL;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +38,9 @@ public final class VentanaMemory extends javax.swing.JFrame {
     private boolean preseleccion = false;
     private int puntaje = 0;
 
+    private boolean sound = false;
+    private Clip clip;
+
     /**
      * Creates new form VentanaMemory
      *
@@ -45,6 +48,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
      * @param preguntasSinFiltrar
      */
     public VentanaMemory(String titulo, HashMap<String, String> preguntasSinFiltrar) {
+        cargarSonido();
         this.filtrarPreguntas(preguntasSinFiltrar);
         setPreguntasOrdenadas(preguntas);
         preguntasDesordenadas = desordenarPreguntas(preguntasOrdenadas);
@@ -167,7 +171,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         lblPuntaje = new javax.swing.JLabel();
         panelInferior = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         btnAyudaParcial.setText("Ayuda Parcial");
@@ -201,6 +205,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
             }
         });
         panelSuperior.add(btnSonido);
+        btnSonido.getAccessibleContext().setAccessibleDescription("");
 
         lblPuntaje.setText("Puntaje: ---");
         panelSuperior.add(lblPuntaje);
@@ -213,17 +218,26 @@ public final class VentanaMemory extends javax.swing.JFrame {
         setBounds(0, 0, 414, 337);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonidoActionPerformed
-        // TODO add your handling code here:
+    private void cargarSonido() {
 
         try {
-            Clip clip = AudioSystem.getClip();
-            URL url = this.getClass().getClassLoader().getResource("../resources/melodyloop.mp3");
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(url);
+            clip = AudioSystem.getClip();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            File file = new File("./src/gamification/resources/melodyloop.wav");
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(file);
             clip.open(inputStream);
-            clip.start();
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        }
+    }
+    private void btnSonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonidoActionPerformed
+        // TODO add your handling code here:
+        if (!sound) {
+            clip.start();
+            sound = true;
+        } else {
+            clip.stop();
+            sound = false;
         }
 
     }//GEN-LAST:event_btnSonidoActionPerformed

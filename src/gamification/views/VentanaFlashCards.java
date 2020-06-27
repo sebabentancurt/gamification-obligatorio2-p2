@@ -26,33 +26,33 @@ public class VentanaFlashCards extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VentanaFlashCards(ArrayList<Tema> temasSeleccionados){
+    public VentanaFlashCards(ArrayList<Tema> temasSeleccionados) {
         cargarTemas(temasSeleccionados);
         initComponents();
         mostrarPregunta();
-    
+
     }
-    
-    public void cargarTemas(ArrayList<Tema> temasSeleccionados){
+
+    public void cargarTemas(ArrayList<Tema> temasSeleccionados) {
         String titulo = "";
-        for(Tema tema : temasSeleccionados){
+        for (Tema tema : temasSeleccionados) {
             //titulo
             titulo = titulo + " " + tema.getNombre();
-            
+
             //carga preguntas
-            for(String pregunta : tema.getPreguntas().keySet()){
+            for (String pregunta : tema.getPreguntas().keySet()) {
                 preguntas.add(pregunta);
             }
-            
+
             //carga respuestas
-            for(String respuesta : tema.getPreguntas().values()){
+            for (String respuesta : tema.getPreguntas().values()) {
                 respuestas.add(respuesta);
             }
-            
+
         }
-        
+
         this.setTitle(titulo);
-    
+
     }
 
     public void mostrarPregunta() {
@@ -79,7 +79,7 @@ public class VentanaFlashCards extends javax.swing.JFrame {
         btnAnterior = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         btnPregunta.setText("Pregunta/Respuesta");
@@ -109,9 +109,8 @@ public class VentanaFlashCards extends javax.swing.JFrame {
         getContentPane().add(btnAtras);
         btnAtras.setBounds(220, 210, 90, 22);
 
-        setSize(new java.awt.Dimension(414, 337));
+        setSize(new java.awt.Dimension(424, 337));
         setLocationRelativeTo(null);
-        setBounds(0, 0, 424, 337);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed

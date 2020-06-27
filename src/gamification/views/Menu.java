@@ -25,17 +25,16 @@ public class Menu extends javax.swing.JFrame {
 
     private Sistema sistema;
 
-    /**
-     * Creates new form Dashboard
-     */
-    public Menu() {
-        sistema = new Sistema();
+    public Menu(Sistema unSistema) {
+        sistema = unSistema;
+        ArchivoLectura arch = new ArchivoLectura(".persistencia.txt");
+        ArrayList<List> listaPreguntas = arch.listarDeAN(LINEAS_PREGUNTA);
+        TemaControlador.importarTemas(sistema, listaPreguntas, LINEAS_PREGUNTA);
         initComponents();
     }
 
-    public Menu(Sistema unSistema) {
-        sistema = unSistema;
-        initComponents();
+    private Menu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -60,6 +59,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton2.setText("Gestionar Temas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +232,12 @@ public class Menu extends javax.swing.JFrame {
         VentanaJugar v = new VentanaJugar(sistema);
         v.setVisible(true);
     }//GEN-LAST:event_btnJugarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        TemaControlador.exportarTemas(sistema, ".persistencia.txt");
+        System.exit(1);
+    }//GEN-LAST:event_formWindowClosing
     private static final int LINEAS_PREGUNTA = 3;
 
     /**
