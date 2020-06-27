@@ -17,8 +17,7 @@ public class VentanaJugar extends javax.swing.JFrame {
 
     private Sistema modelo;
     private ArrayList<Tema> temasSeleccionados;
-    private HashMap<String, String> preguntasMemory = new HashMap<>();
-    ;
+    private HashMap<String, String> preguntasMemory = new HashMap<>();    
     private String tituloMemory;
 
     /**

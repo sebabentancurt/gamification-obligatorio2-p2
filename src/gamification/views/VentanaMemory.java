@@ -31,6 +31,8 @@ public final class VentanaMemory extends javax.swing.JFrame {
     private String[][] tipos = new String[3][4];
     private boolean[][] activos = new boolean[3][4];
     private JButton[][] botones;
+    private boolean ayudaParcial = false;
+    private boolean ayudaTotal = false;
 
     /**
      * Creates new form VentanaMemory
@@ -106,13 +108,15 @@ public final class VentanaMemory extends javax.swing.JFrame {
                 String tipo;
                 if (preguntas.containsKey(textos[i][j])) {
                     tipo = "PREGUNTA";
+                    botones[i][j].setForeground(Color.BLUE);
                 } else {
                     tipo = "RESPUESTA";
+                    botones[i][j].setForeground(Color.RED);
                 }
                 tipos[i][j] = tipo;
 
                 botones[i][j].setMargin(new Insets(-5, -5, -5, -5));
-                botones[i][j].setBackground(Color.RED);
+                //botones[i][j].setBackground(Color.RED);
                 botones[i][j].setText("<html><p>" + "BOTON" + "</p></html>");
 
             }
@@ -122,11 +126,17 @@ public final class VentanaMemory extends javax.swing.JFrame {
     public void actualizarTablero(){
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
-                if(activos[i][j]){
+                if(ayudaTotal){
                     botones[i][j].setText(textos[i][j]);
-                }else{
-                    botones[i][j].setText("?");
-                }
+                }else if(ayudaParcial){
+                    botones[i][j].setText(tipos[i][j]);
+                }else{                
+                    if(activos[i][j]){
+                        botones[i][j].setText(textos[i][j]);
+                    }else{
+                        botones[i][j].setText("");
+                    }
+                }    
             }
         }
     }
@@ -152,12 +162,27 @@ public final class VentanaMemory extends javax.swing.JFrame {
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         btnAyudaParcial.setText("Ayuda Parcial");
+        btnAyudaParcial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAyudaParcialActionPerformed(evt);
+            }
+        });
         panelSuperior.add(btnAyudaParcial);
 
         btnAyudaTotal.setText("Ayuda Total");
+        btnAyudaTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAyudaTotalActionPerformed(evt);
+            }
+        });
         panelSuperior.add(btnAyudaTotal);
 
         btnText.setText("Reset");
+        btnText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTextActionPerformed(evt);
+            }
+        });
         panelSuperior.add(btnText);
 
         btnSonido.setText("Sonido");
@@ -193,6 +218,25 @@ public final class VentanaMemory extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSonidoActionPerformed
+
+    private void btnAyudaParcialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaParcialActionPerformed
+        // TODO add your handling code here:
+        ayudaParcial = !ayudaParcial;
+        actualizarTablero();
+    }//GEN-LAST:event_btnAyudaParcialActionPerformed
+
+    private void btnAyudaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaTotalActionPerformed
+        // TODO add your handling code here:
+        ayudaTotal = !ayudaTotal;
+        actualizarTablero();
+    }//GEN-LAST:event_btnAyudaTotalActionPerformed
+
+    private void btnTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTextActionPerformed
+        // TODO add your handling code here:
+        ayudaTotal = false;
+        ayudaParcial = false;
+        actualizarTablero();
+    }//GEN-LAST:event_btnTextActionPerformed
 
     /**
      * @param args the command line arguments

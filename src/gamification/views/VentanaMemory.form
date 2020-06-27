@@ -36,16 +36,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda Parcial"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAyudaParcialActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAyudaTotal">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda Total"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAyudaTotalActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnText">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reset"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSonido">
           <Properties>
