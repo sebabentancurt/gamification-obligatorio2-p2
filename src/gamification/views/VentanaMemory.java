@@ -48,6 +48,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
      * @param preguntasSinFiltrar
      */
     public VentanaMemory(String titulo, HashMap<String, String> preguntasSinFiltrar) {
+        this.setTitle(titulo);
         cargarSonido();
         this.filtrarPreguntas(preguntasSinFiltrar);
         setPreguntasOrdenadas(preguntas);
