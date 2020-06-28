@@ -59,6 +59,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         actualizarTablero();
     }
 
+    //toma las preguntas ordenadas del HashMap y las ordena formato Pregunta - Reespuesta en Array
     public void setPreguntasOrdenadas(HashMap<String, String> preguntasSinFiltrar) {
         int index = 0;
         for (Map.Entry<String, String> entry : preguntasSinFiltrar.entrySet()) {
@@ -71,6 +72,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         }
     }
 
+    //Desordena las preguntas aleatoriamente
     public String[] desordenarPreguntas(String[] preguntasOrdenadas) {
         String[] ar = preguntasOrdenadas.clone();
         Random rnd = new Random();
@@ -86,6 +88,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         return ar;
     }
 
+    //De todas las preguntas de los temas selecionados selecciona 6 aleatoriamente
     public void filtrarPreguntas(HashMap<String, String> preguntasSinFiltrar) {
         Set<String> keySet = preguntasSinFiltrar.keySet();
         ArrayList<String> keys = new ArrayList<>(keySet);
@@ -112,10 +115,11 @@ public final class VentanaMemory extends javax.swing.JFrame {
                 panelInferior.add(jButton);
                 botones[i][j] = jButton;
 
-                textos[i][j] = preguntasDesordenadas[index];
+                textos[i][j] = preguntasDesordenadas[index]; //agrega el texto a la matriz paralela
                 index++;
 
                 String tipo;
+                //agrega texto de tipo en matriz paralela
                 if (preguntas.containsKey(textos[i][j])) {
                     tipo = "PREGUNTA";
                     botones[i][j].setForeground(Color.BLUE);
@@ -126,9 +130,6 @@ public final class VentanaMemory extends javax.swing.JFrame {
                 tipos[i][j] = tipo;
 
                 botones[i][j].setMargin(new Insets(-5, -5, -5, -5));
-                //botones[i][j].setBackground(Color.RED);
-                botones[i][j].setText("<html><p>" + "BOTON" + "</p></html>");
-
             }
         }
     }
@@ -138,12 +139,12 @@ public final class VentanaMemory extends javax.swing.JFrame {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
                 if (ayudaTotal) {
-                    botones[i][j].setText(textos[i][j]);
+                    botones[i][j].setText(textos[i][j]); // muestra respuesta
                 } else if (ayudaParcial) {
-                    botones[i][j].setText(tipos[i][j]);
+                    botones[i][j].setText(tipos[i][j]); // muestra tipos
                 } else {
                     if (activos[i][j]) {
-                        botones[i][j].setText(textos[i][j]);
+                        botones[i][j].setText(textos[i][j]); // muestra los ya matcheados
                     } else {
                         botones[i][j].setText("");
                     }
@@ -335,17 +336,17 @@ public final class VentanaMemory extends javax.swing.JFrame {
         // En fila y columna se reciben las coordenas donde presion� el usuario, relativas al comienzo de la grilla
         // fila 0 y columna 0 corresponden a la posici�n de arriba a la izquierda.
         // Debe indicarse c�mo responder al click de ese bot�n.
-        botones[fila][col].setText(textos[fila][col]);
-        if (!preseleccion) {
+        botones[fila][col].setText(textos[fila][col]); // muestra texto
+        if (!preseleccion) { //primera carta
             seleccion1[0] = fila;
             seleccion1[1] = col;
             preseleccion = true;
-        } else {
-            seleccion2[0] = fila;
+        } else { // segunda carta
+            seleccion2[0] = fila; 
             seleccion2[1] = col;
-            preseleccion = false;
+            preseleccion = false; //termina turno
 
-            checkMatch();
+            checkMatch(); // verifica
 
         }
     }
@@ -359,12 +360,13 @@ public final class VentanaMemory extends javax.swing.JFrame {
             Object key = (String) entry.getKey();
             Object val = (String) entry.getValue();
 
-            if ((card1.equals(key) && card2.equals(val)) || (card1.equals(val) && card2.equals(key))) {
+            if ((card1.equals(key) && card2.equals(val)) || (card1.equals(val) && card2.equals(key))) { //chequea si efectivamente las cartas son match
                 match = true;
                 activos[seleccion1[0]][seleccion1[1]] = true;
                 activos[seleccion2[0]][seleccion2[1]] = true;
             }
         }
+        //puntaje
         if (match) {
             puntaje += 50;
         } else {
