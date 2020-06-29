@@ -218,7 +218,7 @@ public final class VentanaMemory extends javax.swing.JFrame {
         panelInferior.setLayout(new java.awt.GridLayout(3, 4));
         getContentPane().add(panelInferior);
 
-        setBounds(0, 0, 660, 516);
+        setBounds(0, 0, 414, 337);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cargarSonido() {
