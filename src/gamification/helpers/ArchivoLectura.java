@@ -65,7 +65,7 @@ public class ArchivoLectura {
         while (this.hayMasLineas()) {
             van++;
             String linea = this.linea();
-            if (!linea.isBlank()) {
+            if (!linea.isEmpty()) {
                 list.add(this.linea());
             }
 
